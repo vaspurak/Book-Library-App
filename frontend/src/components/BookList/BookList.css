@@ -59,3 +59,16 @@
   transition: color 0.3s ease;
   color: #fca510;
 }
+
+.del-btn {
+  color: rgb(192, 56, 56);
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.del-btn:hover {
+  color: red;
+}
+.del-btn:active {
+  transform: translateY(2px);
+}
