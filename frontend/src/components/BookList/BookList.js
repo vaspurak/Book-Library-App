@@ -1,6 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
-// import { RiDeleteBin2Line } from "react-icons/ri";
-import { deleteBook } from "../../redux/books/actionCreators";
+import { BsBookmarkStar, BsBookmarkStarFill } from "react-icons/bs";
+import { RiDeleteBin2Line } from "react-icons/ri";
+import { deleteBook, toggleFavorite } from "../../redux/books/actionCreators";
+
 import "./BookList.css";
 
 const BookList = () => {
@@ -8,8 +10,10 @@ const BookList = () => {
   const dispatch = useDispatch();
 
   const handleDeleteBook = (id) => {
-    // console.log(deleteBook(id));
     dispatch(deleteBook(id));
+  };
+  const handleToggleFavorite = (id) => {
+    dispatch(toggleFavorite(id));
   };
 
   return (
@@ -24,11 +28,23 @@ const BookList = () => {
               <div className="book-info">
                 {++i}. {book.title} by <strong>{book.author}</strong>
               </div>
+
               <div className="book-actions">
-                {/* <RiDeleteBin2Line /> */}
-                <button onClick={() => handleDeleteBook(book.id)}>
+                <span onClick={() => handleToggleFavorite(book.id)}>
+                  {book.isFavorite ? (
+                    <BsBookmarkStarFill className="star-icon" />
+                  ) : (
+                    <BsBookmarkStar className="star-icon" />
+                  )}
+                </span>
+
+                <RiDeleteBin2Line
+                  className="del-btn"
+                  onClick={() => handleDeleteBook(book.id)}
+                />
+                {/* <button onClick={() => handleDeleteBook(book.id)}>
                   Delete
-                </button>
+                </button> */}
               </div>
             </li>
           ))}
