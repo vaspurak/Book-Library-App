@@ -2,9 +2,11 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   setTitleFilter,
   setAuthorFilter,
+  setOnlyFavoriteFilter,
+  resetFilters,
   selectTitleFilter,
   selectAuthorFilter,
-  resetFilters,
+  selectOnlyFavoriteFilter,
 } from "../../redux/slices/filterSlice";
 import "./Filter.css";
 
@@ -12,12 +14,17 @@ const Filter = () => {
   const dispatch = useDispatch();
   const titleFilter = useSelector(selectTitleFilter);
   const authorFilter = useSelector(selectAuthorFilter);
+  const onlyFavoriteFilter = useSelector(selectOnlyFavoriteFilter);
 
   const handleTitleFilterChange = (e) => {
     dispatch(setTitleFilter(e.target.value));
   };
   const handleAuthorFilterChange = (e) => {
     dispatch(setAuthorFilter(e.target.value));
+  };
+
+  const hanldeOnlyFavoriteFilter = () => {
+    dispatch(setOnlyFavoriteFilter());
   };
 
   const handleResetFilters = () => {
@@ -42,6 +49,16 @@ const Filter = () => {
             value={authorFilter}
             onChange={handleAuthorFilterChange}
           />
+        </div>
+        <div className="filter-group">
+          <label>
+            <input
+              type="checkbox"
+              checked={onlyFavoriteFilter}
+              onChange={hanldeOnlyFavoriteFilter}
+            />
+            Only Favorite
+          </label>
         </div>
         <button type="button" onClick={handleResetFilters}>
           Reset Filters
