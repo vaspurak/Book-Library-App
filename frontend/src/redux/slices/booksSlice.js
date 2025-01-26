@@ -6,7 +6,7 @@ const initialState = [];
 
 export const fetchBook = createAsyncThunk("books/fetchBook", async () => {
   const res = await axios.get("http://localhost:5000/random-book");
-  // console.log(res.data);
+
   return res.data;
 });
 
@@ -16,14 +16,9 @@ const booksSlice = createSlice({
   reducers: {
     addBook: (state, action) => {
       //You can mutate state thanks to IMMER library
-      // return [...state, action.payload];
       state.push(action.payload);
     },
     deleteBook: (state, action) => {
-      //   const index = state.findIndex((book) => book.id === action.payload);
-      //   if (index !== 1) {
-      //     state.splice(index,1)
-      //   }
       return state.filter((book) => book.id !== action.payload);
     },
     toggleFavorite: (state, action) => {
@@ -49,6 +44,5 @@ const booksSlice = createSlice({
 });
 
 export const { addBook, deleteBook, toggleFavorite } = booksSlice.actions;
-
 export const selectBooks = (state) => state.books;
 export default booksSlice.reducer;
