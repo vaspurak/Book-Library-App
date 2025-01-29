@@ -84,9 +84,6 @@ const BookList = () => {
                   className="del-btn"
                   onClick={() => handleDeleteBook(book.id)}
                 />
-                {/* <button onClick={() => handleDeleteBook(book.id)}>
-                  Delete
-                </button> */}
               </div>
             </li>
           ))}
